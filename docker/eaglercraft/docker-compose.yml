@@ -1,0 +1,20 @@
+services:
+  eaglercraft:
+    image: nginx:1.25.5
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.r0.rule=Host(`eaglercraft.yuuk1.uk`)
+      - traefik.http.routers.r0.tls=true
+      - traefik.http.routers.r0.tls.certResolver=letsencrypt
+      - traefik.http.routers.r0.service=s0
+      - traefik.http.services.s0.loadbalancer.server.port=80
+    volumes:
+      - ../../repo/eaglercraft:/usr/share/nginx/html
+
+networks:
+  traefik:
+    external: true
+    name: traefik

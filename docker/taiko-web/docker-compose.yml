@@ -1,0 +1,43 @@
+services:
+  taiko-web-mongo:
+    volumes:
+      - ./mongo:/data/db
+    container_name: taiko-mongo
+    image: mongo:latest
+    #networks:
+      #- default
+  taiko-web-redis:
+    volumes:
+      - ./redis:/data
+    image: redis:latest
+    #networks:
+      #- default
+  taiko-web:
+    volumes:
+      - ./songs:/app/public/songs
+    # debug
+    #ports:
+      #- 9999:8000
+    #container_name: taiko-web
+    build:
+      context: ../../repo/taiko-web
+    #image: taiko-web:latest
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.r3.rule=Host(`taikoapp.uk`)
+      - traefik.http.routers.r3.tls=true
+      - traefik.http.routers.r3.tls.certResolver=letsencrypt
+      - traefik.http.routers.r3.service=s3
+      - traefik.http.services.s3.loadbalancer.server.port=8000
+    environment:
+      - TAIKO_WEB_MONGO_HOST=taiko-web-mongo
+      - TAIKO_WEB_REDIS_HOST=taiko-web-redis
+
+networks:
+  #default:
+  traefik:
+    external: true
+    name: traefik

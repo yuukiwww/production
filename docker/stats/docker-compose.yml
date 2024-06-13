@@ -1,0 +1,19 @@
+services:
+  stats:
+    build:
+      context: ../../repo/stats
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.r1.rule=Host(`yuuk1.tk`)
+      - traefik.http.routers.r1.tls=true
+      - traefik.http.routers.r1.tls.certResolver=letsencrypt
+      - traefik.http.routers.r1.service=s1
+      - traefik.http.services.s1.loadbalancer.server.port=8000
+
+networks:
+  traefik:
+    external: true
+    name: traefik

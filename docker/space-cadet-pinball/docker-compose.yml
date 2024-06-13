@@ -1,0 +1,20 @@
+services:
+  space-cadet-pinball:
+    image: nginx:1.25.5
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.r2.rule=Host(`space-cadet-pinball.yuuk1.uk`)
+      - traefik.http.routers.r2.tls=true
+      - traefik.http.routers.r2.tls.certResolver=letsencrypt
+      - traefik.http.routers.r2.service=s2
+      - traefik.http.services.s2.loadbalancer.server.port=80
+    volumes:
+      - ../../repo/space-cadet-pinball:/usr/share/nginx/html
+
+networks:
+  traefik:
+    external: true
+    name: traefik

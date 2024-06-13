@@ -1,0 +1,24 @@
+services:
+  litey:
+    container_name: litey
+    build:
+      context: ../../repo/litey
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.litey.rule=Host(`litey.trade`)
+      - traefik.http.routers.litey.tls=true
+      - traefik.http.routers.litey.tls.certResolver=letsencrypt
+      - traefik.http.routers.litey.service=litey-routing-service
+      - traefik.http.services.litey-routing-service.loadbalancer.server.port=8000
+    environment:
+      - MONGO_URI=mongodb+srv://cluster0.xwewvby.mongodb.net/
+      - MONGO_USER=yuuki
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+
+networks:
+  traefik:
+    external: true
+    name: traefik

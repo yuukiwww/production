@@ -1,0 +1,22 @@
+services:
+  catmario:
+    container_name: catmario
+    image: nginx:1.25.5
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.catmario.priority=1000
+      - traefik.http.routers.catmario.rule=Host(`catmario.yuuk1.uk`)
+      - traefik.http.routers.catmario.tls=true
+      - traefik.http.routers.catmario.tls.certResolver=letsencrypt
+      - traefik.http.routers.catmario.service=catmario-routing-service
+      - traefik.http.services.catmario-routing-service.loadbalancer.server.port=80
+    volumes:
+      - ../../repo/catmario/docs:/usr/share/nginx/html
+
+networks:
+  traefik:
+    external: true
+    name: traefik

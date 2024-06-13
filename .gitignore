@@ -1,0 +1,7 @@
+/docker/traefik/acme
+/docker/traefik/.env
+/docker/taiko-web/mongo
+/docker/taiko-web/redis
+/docker/taiko-web/songs
+/docker/litey/.env
+/repo
