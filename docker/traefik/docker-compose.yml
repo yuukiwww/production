@@ -28,6 +28,8 @@ services:
       - traefik.http.routers.dashboard.tls=true
       - traefik.http.routers.dashboard.tls.certResolver=letsencrypt
       - traefik.http.routers.dashboard.service=api@internal
+    environment:
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
 
 networks:
   traefik:
