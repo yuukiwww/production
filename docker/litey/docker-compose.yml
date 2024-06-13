@@ -8,11 +8,13 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.http.routers.litey.rule=Host(`litey.trade`)
-      - traefik.http.routers.litey.tls=true
-      - traefik.http.routers.litey.tls.certResolver=letsencrypt
-      - traefik.http.routers.litey.service=litey-routing-service
-      - traefik.http.services.litey-routing-service.loadbalancer.server.port=8000
+      - traefik.http.routers.r4.rule=Host(`litey.trade`)
+      - traefik.http.routers.r4.tls=true
+      - traefik.http.routers.r4.tls.certResolver=letsencrypt
+      - traefik.http.routers.r4.tls.domains[0].main=litey.trade
+      - traefik.http.routers.r4.tls.domains[0].sans=*.litey.trade
+      - traefik.http.routers.r4.service=s4
+      - traefik.http.services.s4.loadbalancer.server.port=8000
     environment:
       - MONGO_URI=mongodb+srv://cluster0.xwewvby.mongodb.net/
       - MONGO_USER=yuuki

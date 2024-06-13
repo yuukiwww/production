@@ -6,7 +6,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./acme:/acme
-    container_name: traefik
     image: traefik:v3.0.1
     networks:
       - traefik
@@ -16,11 +15,11 @@ services:
       - --providers.docker.exposedByDefault=false
       - --providers.docker.network=traefik
       - --entryPoints.web.address=:80
-      - --entryPoints.web.http.redirections.entryPoint.to=websecure
       - --entryPoints.websecure.address=:443
-      - --entryPoints.websecure.http.tls.certResolver=letsencrypt
-      - --certificatesResolvers.letsencrypt.acme.email=0xv75b42326631e@au.com
-      - --certificatesResolvers.letsencrypt.acme.httpChallenge.entrypoint=web
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge=true
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.provider=cloudflare
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers=1.1.1.1:53,1.0.0.1:53
       - --certificatesResolvers.letsencrypt.acme.storage=acme/acme.json
       - --api.dashboard=true
     labels:
