@@ -27,11 +27,12 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.http.routers.r3.rule=Host(`taikoapp.uk`)
-      - traefik.http.routers.r3.tls=true
-      - traefik.http.routers.r3.tls.certResolver=letsencrypt
-      - traefik.http.routers.r3.service=s3
-      - traefik.http.services.s3.loadbalancer.server.port=8000
+      - traefik.http.routers.R3.rule=Host(`taikoapp.uk`)
+      - traefik.http.routers.R3.entryPoints=websecure
+      - traefik.http.routers.R3.tls=true
+      - traefik.http.routers.R3.tls.certResolver=letsencrypt
+      - traefik.http.routers.R3.service=S3
+      - traefik.http.services.S3.loadbalancer.server.port=8000
     environment:
       - TAIKO_WEB_MONGO_HOST=taiko-web-mongo
       - TAIKO_WEB_REDIS_HOST=taiko-web-redis
