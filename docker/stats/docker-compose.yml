@@ -7,11 +7,12 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.http.routers.r1.rule=Host(`yuuk1.tk`)
-      - traefik.http.routers.r1.tls=true
-      - traefik.http.routers.r1.tls.certResolver=letsencrypt
-      - traefik.http.routers.r1.service=s1
-      - traefik.http.services.s1.loadbalancer.server.port=8000
+      - traefik.http.routers.R1.rule=Host(`yuuk1.tk`)
+      - traefik.http.routers.R1.entryPoints=websecure
+      - traefik.http.routers.R1.tls=true
+      - traefik.http.routers.R1.tls.certResolver=letsencrypt
+      - traefik.http.routers.R1.service=S1
+      - traefik.http.services.S1.loadbalancer.server.port=8000
 
 networks:
   traefik:
