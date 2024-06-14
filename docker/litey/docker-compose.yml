@@ -1,6 +1,5 @@
 services:
   litey:
-    container_name: litey
     build:
       context: ../../repo/litey
     networks:

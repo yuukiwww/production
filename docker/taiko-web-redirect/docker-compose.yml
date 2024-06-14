@@ -1,17 +1,17 @@
 services:
-  twr:
-    container_name: twr
+  taiko-web-redirect:
     image: arbarwings/docker-web-redirect:latest
     networks:
       - default
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.http.routers.twr.rule=Host(`taiko-web-is-4ever.yuuk1.tk`) || Host(`taiko-web-v2.yuuk1.tk`)
-      - traefik.http.routers.twr.tls=true
-      - traefik.http.routers.twr.tls.certResolver=letsencrypt
-      - traefik.http.routers.twr.service=twr-routing-service
-      - traefik.http.services.twr-routing-service.loadbalancer.server.port=80
+      - traefik.http.routers.R5.rule=Host(`taiko-web-is-4ever.yuuk1.tk`) || Host(`taiko-web-v2.yuuk1.tk`)
+      - traefik.http.routers.R5.entryPoints=websecure
+      - traefik.http.routers.R5.tls=true
+      - traefik.http.routers.R5.tls.certResolver=letsencrypt
+      - traefik.http.routers.R5.service=S5
+      - traefik.http.services.S5.loadbalancer.server.port=80
     environment:
       - REDIRECT_TARGET=taikoapp.uk
 
