@@ -6,11 +6,12 @@ services:
       - traefik
     labels:
       - traefik.enable=true
-      - traefik.http.routers.r0.rule=Host(`eaglercraft.yuuk1.uk`)
-      - traefik.http.routers.r0.tls=true
-      - traefik.http.routers.r0.tls.certResolver=letsencrypt
-      - traefik.http.routers.r0.service=s0
-      - traefik.http.services.s0.loadbalancer.server.port=80
+      - traefik.http.routers.R0.rule=Host(`eaglercraft.yuuk1.uk`)
+      - traefik.http.routers.R0.entryPoints=websecure
+      - traefik.http.routers.R0.tls=true
+      - traefik.http.routers.R0.tls.certResolver=letsencrypt
+      - traefik.http.routers.R0.service=S0
+      - traefik.http.services.S0.loadbalancer.server.port=80
     volumes:
       - ../../repo/eaglercraft:/usr/share/nginx/html
 
