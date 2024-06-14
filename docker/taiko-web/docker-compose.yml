@@ -31,6 +31,8 @@ services:
       - traefik.http.routers.R3.entryPoints=websecure
       - traefik.http.routers.R3.tls=true
       - traefik.http.routers.R3.tls.certResolver=letsencrypt
+      - traefik.http.routers.R3.tls.domains[0].main=taikoapp.uk
+      - traefik.http.routers.R3.tls.domains[0].sans=*.taikoapp.uk
       - traefik.http.routers.R3.service=S3
       - traefik.http.services.S3.loadbalancer.server.port=8000
     environment:
