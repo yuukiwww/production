@@ -11,6 +11,8 @@ services:
       - traefik.http.routers.R1.entryPoints=websecure
       - traefik.http.routers.R1.tls=true
       - traefik.http.routers.R1.tls.certResolver=letsencrypt
+      - traefik.http.routers.R1.tls.domains[0].main=yuuk1.tk
+      - traefik.http.routers.R1.tls.domains[0].sans=*.yuuk1.tk
       - traefik.http.routers.R1.service=S1
       - traefik.http.services.S1.loadbalancer.server.port=8000
 
