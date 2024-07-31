@@ -1,6 +1,6 @@
 #!/bin/bash
 
-services=( taiko-web litey )
+services=( traefik taiko-web litey stats )
 
 for service in ${services[@]}; do
   (
