@@ -1,6 +1,6 @@
 services:
   catmario:
-    image: nginx:1.25.5
+    image: nginx:1.26.2
     networks:
       - default
       - traefik
