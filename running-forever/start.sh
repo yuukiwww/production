@@ -2,7 +2,10 @@
 
 services=( traefik taiko-web litey stats )
 
-for service in ${services[@]}; do
+args=("${@:-"${services[@]}"}")
+
+for service in "${args[@]}"; do
+  echo "$service を再起動しています…"
   (
     cd "../docker/$service"
     tmux kill-session -t "$service"
