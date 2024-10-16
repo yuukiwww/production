@@ -1,6 +1,6 @@
 #!/bin/bash
 
-services=( traefik taiko-web litey stats )
+services=( traefik taiko-web litey stats taiko-web-redirect catmario eaglercraft space-cadet-pinball )
 
 args=("${@:-"${services[@]}"}")
 
