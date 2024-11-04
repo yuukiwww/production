@@ -24,10 +24,12 @@ services:
       - --api.dashboard=true
     labels:
       - traefik.enable=true
-      - traefik.http.routers.RX.rule=Host(`traefik.yuuk1.uk`)
+      - traefik.http.routers.RX.rule=Host(`yuuk1.uk`)
       - traefik.http.routers.RX.entryPoints=websecure
       - traefik.http.routers.RX.tls=true
       - traefik.http.routers.RX.tls.certResolver=letsencrypt
+      - traefik.http.routers.RX.tls.domains[0].main=yuuk1.uk
+      - traefik.http.routers.RX.tls.domains[0].sans=*.yuuk1.uk
       - traefik.http.routers.RX.service=api@internal
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
