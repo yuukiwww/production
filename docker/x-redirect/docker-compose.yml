@@ -1,0 +1,21 @@
+services:
+  x-redirect:
+    image: nginx:1.26.2
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.R7.rule=Host(`xtaiko.yuuk1.uk`) || Host(`xazi.yuuk1.uk`)
+      - traefik.http.routers.R7.entryPoints=websecure
+      - traefik.http.routers.R7.tls=true
+      - traefik.http.routers.R7.tls.certResolver=letsencrypt
+      - traefik.http.routers.R7.service=S7
+      - traefik.http.services.S7.loadbalancer.server.port=80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+networks:
+  traefik:
+    external: true
+    name: traefik
