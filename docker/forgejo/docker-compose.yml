@@ -1,0 +1,23 @@
+services:
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:9
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.R8.rule=Host(`forgejo.win`)
+      - traefik.http.routers.R8.entryPoints=websecure
+      - traefik.http.routers.R8.tls=true
+      - traefik.http.routers.R8.tls.certResolver=letsencrypt
+      - traefik.http.routers.R8.tls.domains[0].main=forgejo.win
+      - traefik.http.routers.R8.tls.domains[0].sans=*.forgejo.win
+      - traefik.http.routers.R8.service=S8
+      - traefik.http.services.S8.loadbalancer.server.port=3000
+    volumes:
+      - ./data:/data
+
+networks:
+  traefik:
+    external: true
+    name: traefik
