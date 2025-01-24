@@ -4,5 +4,6 @@
 /docker/taiko-web/redis
 /docker/taiko-web/songs
 /docker/litey/.env
+/docker/litey/redis
 /docker/forgejo/data
 /repo

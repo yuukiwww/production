@@ -1,4 +1,8 @@
 services:
+  litey-redis:
+    volumes:
+      - ./redis:/data
+    image: redis:latest
   litey:
     build:
       context: ../../repo/litey
@@ -19,6 +23,7 @@ services:
       - MONGO_URI=mongodb+srv://cluster0.xwewvby.mongodb.net/
       - MONGO_USER=yuuki
       - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - REDIS_URI=redis://litey-redis:6379/
 
 networks:
   traefik:
