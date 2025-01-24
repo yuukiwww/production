@@ -38,6 +38,7 @@ services:
     environment:
       - TAIKO_WEB_MONGO_HOST=taiko-web-mongo
       - TAIKO_WEB_REDIS_HOST=taiko-web-redis
+      - REDIS_URI=redis://taiko-web-redis:6379/
 
 networks:
   #default:
