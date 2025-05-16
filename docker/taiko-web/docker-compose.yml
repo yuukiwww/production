@@ -19,9 +19,7 @@ services:
     #ports:
       #- 9999:8000
     #container_name: taiko-web
-    build:
-      context: ../../repo/taiko-web
-    #image: taiko-web:latest
+    image: ghcr.io/yuukiwww/taiko-web:latest
     networks:
       - default
       - traefik
