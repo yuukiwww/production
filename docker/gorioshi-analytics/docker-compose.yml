@@ -1,7 +1,6 @@
 services:
-  stats:
-    build:
-      context: ../../repo/stats
+  gorioshi-analytics:
+    image: ghcr.io/yuukiwww/gorioshi-analytics:latest
     networks:
       - default
       - traefik

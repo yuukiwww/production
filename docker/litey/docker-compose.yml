@@ -4,8 +4,7 @@ services:
       - ./redis:/data
     image: redis:latest
   litey:
-    build:
-      context: ../../repo/litey
+    image: ghcr.io/yuukiwww/litey:latest
     networks:
       - default
       - traefik
