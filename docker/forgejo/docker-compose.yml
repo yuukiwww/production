@@ -1,6 +1,6 @@
 services:
   forgejo:
-    image: code.forgejo.org/forgejo/forgejo:10.0.3
+    image: code.forgejo.org/forgejo/forgejo:11.0.1
     networks:
       - default
       - traefik
