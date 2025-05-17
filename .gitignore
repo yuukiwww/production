@@ -6,4 +6,3 @@
 /docker/litey/.env
 /docker/litey/redis
 /docker/forgejo/data
-/repo
